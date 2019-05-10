@@ -5,6 +5,7 @@ import org.junit.Rule;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
@@ -51,7 +52,7 @@ public class LoginTest {
         String hint = "用户名必须为有效的邮箱地址！\n";
 
         Login.login(email, password, confirmPassword);
-        assertThat(log.getLogWithNormalizedLineSeparator(), is(""));
+        assertThat(log.getLogWithNormalizedLineSeparator(), not(hint));
         log.clearLog();
 
         Login.login(notEmail, password, confirmPassword);
