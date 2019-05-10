@@ -58,7 +58,7 @@ public class LoginTest {
         String numbers = "1111111";
         String letters = "aaaaaaa";
 
-        String hint = "密码必须包含子母和数字，长度不小于8为，且必须含有一位特殊字符（@#$%^&*）！\n";
+        String hint = "密码必须包含子母和数字，长度不小于8为，且必须含有仅一位特殊字符（@#$%^&*）！\n";
 
         Login.login(username, numbers, numbers);
         assertThat(log.getLogWithNormalizedLineSeparator(), is(hint));
@@ -72,7 +72,7 @@ public class LoginTest {
     public void should_give_hint_when_password_shorter_than_8() {
         String shortPassword = "aB123";
 
-        String hint = "密码必须包含子母和数字，长度不小于8为，且必须含有一位特殊字符（@#$%^&*）！\n";
+        String hint = "密码必须包含子母和数字，长度不小于8为，且必须含有仅一位特殊字符（@#$%^&*）！\n";
 
         Login.login(username, shortPassword, shortPassword);
         assertThat(log.getLogWithNormalizedLineSeparator(), is(hint));
@@ -83,7 +83,7 @@ public class LoginTest {
         String noSpecialCharacter = "a12345678";
         String twoSpecialCharacter = "a&sd$*12345";
 
-        String hint = "密码必须包含子母和数字，长度不小于8为，且必须含有一位特殊字符（@#$%^&*）！\n";
+        String hint = "密码必须包含子母和数字，长度不小于8为，且必须含有仅一位特殊字符（@#$%^&*）！\n";
 
         Login.login(username, noSpecialCharacter, noSpecialCharacter);
         assertThat(log.getLogWithNormalizedLineSeparator(), is(hint));
@@ -91,5 +91,9 @@ public class LoginTest {
 
         Login.login(username, twoSpecialCharacter, twoSpecialCharacter);
         assertThat(log.getLogWithNormalizedLineSeparator(), is(hint));
+        log.clearLog();
+
+        Login.login(username, password, confirmPassword);
+        assertThat(log.getLogWithNormalizedLineSeparator(), not(hint));
     }
 }

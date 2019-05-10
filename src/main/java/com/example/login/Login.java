@@ -9,7 +9,7 @@ public class Login {
         } else if (!StringService.isEmail(username)) {
             System.out.println("用户名必须为有效的邮箱地址！");
         } else if (!StringService.isValidPassword(password)) {
-            System.out.println("密码必须包含子母和数字，长度不小于8为，且必须含有一位特殊字符（@#$%^&*）！");
+            System.out.println("密码必须包含子母和数字，长度不小于8为，且必须含有仅一位特殊字符（@#$%^&*）！");
         }
     }
 }
