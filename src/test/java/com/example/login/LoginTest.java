@@ -52,4 +52,19 @@ public class LoginTest {
         Login.login(notEmail, password, confirmPassword);
         assertThat(log.getLogWithNormalizedLineSeparator(), is(hint));
     }
+
+    @Test
+    public void should_give_hint_when_password_not_contains_letter_and_number() {
+        String numbers = "1111111";
+        String letters = "aaaaaaa";
+
+        String hint = "密码必须包含子母和数字，长度不小于8为，且必须含有一位特殊字符（@#$%^&*）！";
+
+        Login.login(username,numbers,numbers);
+        assertThat(log.getLogWithNormalizedLineSeparator(),is(hint));
+        log.clearLog();
+
+        Login.login(username,letters,letters);
+        assertThat(log.getLogWithNormalizedLineSeparator(), is(hint));
+    }
 }
