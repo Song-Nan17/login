@@ -58,7 +58,7 @@ public class LoginTest {
         String numbers = "1111111";
         String letters = "aaaaaaa";
 
-        String hint = "密码必须包含子母和数字，长度不小于8为，且必须含有一位特殊字符（@#$%^&*）！";
+        String hint = "密码必须包含子母和数字，长度不小于8为，且必须含有一位特殊字符（@#$%^&*）！\n";
 
         Login.login(username,numbers,numbers);
         assertThat(log.getLogWithNormalizedLineSeparator(),is(hint));
