@@ -9,8 +9,10 @@ public class StringService {
     public static boolean isValidPassword(String password) {
         String letters = "^.*[a-zA-Z].*$";
         String numbers = "^.*[0-9].*$";
+        String specialCharacter = "^.[/@#/$%/^&/*].$";
         return password.matches(letters) &&
                 password.matches(numbers) &&
+                password.matches(specialCharacter) &&
                 password.length() >= 8;
     }
 }
