@@ -77,4 +77,19 @@ public class LoginTest {
         Login.login(username, shortPassword, shortPassword);
         assertThat(log.getLogWithNormalizedLineSeparator(), is(hint));
     }
+
+    @Test
+    public void should_give_hint_when_special_character_in_password_is_not_one() {
+        String noSpecialCharacter = "a12345678";
+        String twoSpecialCharacter = "a&sd$*12345";
+
+        String hint = "密码必须包含子母和数字，长度不小于8为，且必须含有一位特殊字符（@#$%^&*）！\n";
+
+        Login.login(username, noSpecialCharacter, noSpecialCharacter);
+        assertThat(log.getLogWithNormalizedLineSeparator(), is(hint));
+        log.clearLog();
+
+        Login.login(username, twoSpecialCharacter, twoSpecialCharacter);
+        assertThat(log.getLogWithNormalizedLineSeparator(), is(hint));
+    }
 }
