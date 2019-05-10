@@ -60,11 +60,21 @@ public class LoginTest {
 
         String hint = "密码必须包含子母和数字，长度不小于8为，且必须含有一位特殊字符（@#$%^&*）！\n";
 
-        Login.login(username,numbers,numbers);
-        assertThat(log.getLogWithNormalizedLineSeparator(),is(hint));
+        Login.login(username, numbers, numbers);
+        assertThat(log.getLogWithNormalizedLineSeparator(), is(hint));
         log.clearLog();
 
-        Login.login(username,letters,letters);
+        Login.login(username, letters, letters);
+        assertThat(log.getLogWithNormalizedLineSeparator(), is(hint));
+    }
+
+    @Test
+    public void should_give_hint_when_password_shorter_than_8() {
+        String shortPassword = "aB123";
+
+        String hint = "密码必须包含子母和数字，长度不小于8为，且必须含有一位特殊字符（@#$%^&*）！\n";
+
+        Login.login(username, shortPassword, shortPassword);
         assertThat(log.getLogWithNormalizedLineSeparator(), is(hint));
     }
 }
