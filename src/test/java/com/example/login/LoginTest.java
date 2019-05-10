@@ -106,4 +106,12 @@ public class LoginTest {
         Login.login(username, password, notEqualsPassword);
         assertThat(log.getLogWithNormalizedLineSeparator(), is(hint));
     }
+
+    @Test
+    public void should_give_hint_when_success() {
+        String hint = "恭喜您注册成功！";
+
+        Login.login(username, password, confirmPassword);
+        assertThat(log.getLogWithNormalizedLineSeparator(), is(hint));
+    }
 }
