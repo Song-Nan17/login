@@ -96,4 +96,14 @@ public class LoginTest {
         Login.login(username, password, confirmPassword);
         assertThat(log.getLogWithNormalizedLineSeparator(), not(hint));
     }
+
+    @Test
+    public void should_give_hint_when_confirm_password_not_equals_password() {
+        String notEqualsPassword = "notEquals";
+
+        String hint = "确认密码不一致！请重新输入。";
+
+        Login.login(username, password, notEqualsPassword);
+        assertThat(log.getLogWithNormalizedLineSeparator(), is(hint));
+    }
 }
