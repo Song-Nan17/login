@@ -109,7 +109,7 @@ public class LoginTest {
 
     @Test
     public void should_give_hint_when_success() {
-        String hint = "恭喜您注册成功！";
+        String hint = "恭喜您注册成功！\n";
 
         Login.login(username, password, confirmPassword);
         assertThat(log.getLogWithNormalizedLineSeparator(), is(hint));
